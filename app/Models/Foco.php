@@ -11,6 +11,7 @@ class Foco extends Model
 
     protected $fillable = ['nombre', 'estado', 'aula_id'];
 
+    // Relación con aula
     public function aula()
     {
         return $this->belongsTo(Aula::class);

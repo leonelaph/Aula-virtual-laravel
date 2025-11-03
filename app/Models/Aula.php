@@ -9,10 +9,13 @@ class Aula extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'capacidad', 'ubicacion'];
+    protected $fillable = [
+        'nombre',
+        'ubicacion', 
+        'capacidad'
+    ];
 
-    public function disponibilidades()
-    {
-        return $this->hasMany(Disponibilidad::class);
-    }
+    protected $casts = [
+        'capacidad' => 'integer'
+    ];
 }

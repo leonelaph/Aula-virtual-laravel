@@ -6,27 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('aulas', function (Blueprint $table) { // ← CAMBIAR 'disponibilidades' por 'aulas'
+        Schema::create('aulas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('ubicacion');
+            $table->string('nombre')->unique();
+            $table->string('codigo')->unique();
             $table->integer('capacidad');
-            $table->text('descripcion')->nullable();
-            $table->boolean('estado')->default(true);
+            $table->enum('tipo', ['normal', 'laboratorio', 'informatica', 'audiovisual']);
+            $table->text('equipamiento')->nullable();
+            $table->boolean('disponible')->default(true);
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('aulas'); // ← CAMBIAR 'disponibilidades' por 'aulas'
+        Schema::dropIfExists('aulas');
     }
 };

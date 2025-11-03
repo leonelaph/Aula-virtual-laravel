@@ -24,3 +24,17 @@ Route::resource('historial-focos', HistorialFocoController::class);
 Route::resource('historial-aires', HistorialAireController::class);
 Route::resource('disponibilidades', DisponibilidadController::class);
 
+
+
+// Rutas para Aulas
+Route::resource('aulas', AulaController::class);
+
+// Ruta adicional para cambiar disponibilidad
+Route::patch('/aulas/{aula}/cambiar-disponibilidad', [AulaController::class, 'cambiarDisponibilidad'])
+    ->name('aulas.cambiar-disponibilidad');
+
+// Ruta API para aulas disponibles
+Route::get('/api/aulas-disponibles', [AulaController::class, 'apiAulasDisponibles'])
+    ->name('api.aulas.disponibles'); 
+
+
